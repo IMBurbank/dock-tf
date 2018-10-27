@@ -33,5 +33,5 @@ RUN apt-get update && apt-get install -y \
 COPY bashrc /etc/bash.bashrc
 RUN chmod a+rwx /etc/bash.bashrc
 
-RUN RUN ${PIP} install --upgrade \
+RUN ${PIP} install \
     tensorflow
