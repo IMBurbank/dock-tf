@@ -31,13 +31,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         software-properties-common \
         unzip \
         && \
+    apt-get update && \
+    apt-get install \
+        nvinfer-runtime-trt-repo-ubuntu1604-4.0.1-ga-cuda9.0 \
+        && \
+    apt-get update && \
+    apt-get install \
+        libnvinfer4=4.1.2-1+cuda9.0 \
+        && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && \
-        apt-get install nvinfer-runtime-trt-repo-ubuntu1604-4.0.1-ga-cuda9.0 && \
-        apt-get update && \
-        apt-get install libnvinfer4=4.1.2-1+cuda9.0
 
 ARG USE_PYTHON_3_NOT_2=True
 ARG _PY_SUFFIX=${USE_PYTHON_3_NOT_2:+3}
@@ -48,15 +51,17 @@ ARG PIP=pip${_PY_SUFFIX}
 ENV LANG C.UTF-8
 
 RUN apt-get update && apt-get install -y \
-    ${PYTHON} \
-    ${PYTHON}-pip
-
-RUN ${PIP} install --upgrade \
-    pip \
-    setuptools
-
-ARG TF_PACKAGE=tensorflow-gpu
-RUN ${PIP} install ${TF_PACKAGE}
+        ${PYTHON} \
+        ${PYTHON}-pip \
+        && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    ${PIP} install --upgrade \
+        pip \
+        setuptools
 
 COPY bashrc /etc/bash.bashrc
 RUN chmod a+rwx /etc/bash.bashrc
+
+RUN RUN ${PIP} install --upgrade \
+    tensorflow-gpu

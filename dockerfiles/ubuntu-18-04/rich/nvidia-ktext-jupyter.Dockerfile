@@ -7,9 +7,9 @@ FROM dget/dock-tf:1804-gpu
 
 # Maintain pre-0.4.4 due to old ktext dependencies
 RUN pip install \
-        msgpack-numpy==0.4.3.2
-
-RUN pip install --upgrade \
+        msgpack-numpy==0.4.3.2 \
+        && \
+    pip install --upgrade \
         annoy \
         ipdb \
         jupyter \
@@ -20,8 +20,11 @@ RUN pip install --upgrade \
         seaborn \
         sklearn
 
-RUN mkdir /my-devel && chmod a+rwx /my-devel
-RUN mkdir /.local && chmod a+rwx /.local
+RUN mkdir /my-devel && \
+    chmod a+rwx /my-devel && \
+    mkdir /.local && \
+    chmod a+rwx /.local
+    
 COPY entry.sh /entry.sh
 
 WORKDIR /my-devel

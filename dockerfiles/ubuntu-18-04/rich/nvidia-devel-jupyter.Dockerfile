@@ -10,8 +10,11 @@ FROM dget/docker-tf:1804-gpu-devel
 
 RUN pip install jupyter
 
-RUN mkdir /my-devel && chmod a+rwx /my-devel
-RUN mkdir /.local && chmod a+rwx /.local
+RUN mkdir /my-devel && \
+    chmod a+rwx /my-devel && \
+    mkdir /.local && \
+    chmod a+rwx /.local
+    
 COPY entry.sh /entry.sh
 
 WORKDIR /my-devel
