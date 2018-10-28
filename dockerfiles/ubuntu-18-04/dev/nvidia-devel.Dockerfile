@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        ibnccl-dev=2.2.13-1+cuda9.0 \
+        libnccl-dev=2.2.13-1+cuda9.0 \
         wget \
         && \
     find /usr/local/cuda-9.0/lib64/ -type f -name 'lib*_static.a' -not -name 'libcudart_static.a' -delete && \
@@ -41,7 +41,8 @@ RUN mkdir /usr/local/cuda-9.0/lib &&  \
     gunzip /usr/share/doc/libnccl2/NCCL-SLA.txt.gz && \
     cp /usr/share/doc/libnccl2/NCCL-SLA.txt /usr/local/cuda/
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y \
         openjdk-8-jdk \
         python3-dev \
         swig \
@@ -51,7 +52,7 @@ RUN apt-get update && apt-get install -y \
     curl https://bazel.build/bazel-release.pub.gpg | apt-key add - && \
     apt-get update && \
     apt-get install -y \
-        Bazel \
+        bazel \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*

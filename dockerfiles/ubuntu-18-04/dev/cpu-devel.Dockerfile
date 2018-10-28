@@ -43,7 +43,7 @@ RUN apt-get update && apt-get install -y \
     curl https://bazel.build/bazel-release.pub.gpg | apt-key add - && \
     apt-get update && \
     apt-get install -y \
-        Bazel \
+        bazel \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
