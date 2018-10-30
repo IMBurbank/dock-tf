@@ -26,7 +26,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         && \
     find /usr/local/cuda-9.0/lib64/ -type f -name 'lib*_static.a' -not -name 'libcudart_static.a' -delete && \
-    rm /usr/lib/x86_64-linux-gnu/libcudnn_static_v7.a && \
     apt-get update && apt-get install -y \
         libnvinfer-dev=4.1.2-1+cuda9.0 \
         && \
