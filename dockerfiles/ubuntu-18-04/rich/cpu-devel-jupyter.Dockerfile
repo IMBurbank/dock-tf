@@ -4,7 +4,7 @@
 
 FROM dget/dock-tf:1804-devel
 
-RUN pip install jupyter
+RUN pip install --no-cache-dir jupyter
 
 RUN mkdir /my-devel && \
     chmod a+rwx /my-devel && \

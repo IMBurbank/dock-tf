@@ -8,7 +8,7 @@
 
 FROM dget/docker-tf:1804-gpu-devel
 
-RUN pip install jupyter
+RUN pip install --no-cache-dir jupyter
 
 RUN mkdir /my-devel && \
     chmod a+rwx /my-devel && \

@@ -6,10 +6,10 @@
 FROM dget/dock-tf:1804-gpu
 
 # Maintain pre-0.4.4 due to old ktext dependencies
-RUN pip install \
+RUN pip install --no-cache-dir \
         msgpack-numpy==0.4.3.2 \
         && \
-    pip install --upgrade \
+    pip install --upgrade --no-cache-dir \
         annoy \
         ipdb \
         jupyter \
