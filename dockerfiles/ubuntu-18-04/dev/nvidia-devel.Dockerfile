@@ -35,10 +35,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Link NCCL libray and header where the build script expects them.
 RUN mkdir /usr/local/cuda-9.0/lib &&  \
     ln -s /usr/lib/x86_64-linux-gnu/libnccl.so.2 /usr/local/cuda/lib/libnccl.so.2 && \
-    ln -s /usr/include/nccl.h /usr/local/cuda/include/nccl.h && \
-    # TODO(tobyboyd): Remove after license is excluded from BUILD file.
-    gunzip /usr/share/doc/libnccl2/NCCL-SLA.txt.gz && \
-    cp /usr/share/doc/libnccl2/NCCL-SLA.txt /usr/local/cuda/
+    ln -s /usr/include/nccl.h /usr/local/cuda/include/nccl.h
 
 RUN apt-get update && \
     apt-get install -y \
