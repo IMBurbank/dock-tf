@@ -6,7 +6,7 @@
 #
 # Launch Jupyter on execution instead of a bash prompt.
 
-FROM dget/docker-tf:1804-gpu-devel
+FROM dget/dock-tf:1804-gpu-devel
 
 RUN pip install --no-cache-dir jupyter
 
