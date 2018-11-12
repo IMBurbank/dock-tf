@@ -40,7 +40,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libnvinfer4=4.1.2-1+cuda9.0 \
         && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf \
+        /var/lib/apt/lists/* \
+        /tmp/* \
+        /var/tmp/* 
 
 ARG USE_PYTHON_3_NOT_2=True
 ARG _PY_SUFFIX=${USE_PYTHON_3_NOT_2:+3}
@@ -49,16 +52,22 @@ ARG PIP=pip${_PY_SUFFIX}
 
 # See http://bugs.python.org/issue19846
 ENV LANG C.UTF-8
+ENV CONTAINER_NAME dock-tf
 
 RUN apt-get update && apt-get install -y \
+        curl \
         ${PYTHON} \
         ${PYTHON}-pip \
         && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
     ${PIP} install --upgrade --no-cache-dir \
         pip \
-        setuptools
+        setuptools \
+        && \
+    rm -rf \
+        /var/lib/apt/lists/* \
+        /tmp/* \
+        /var/tmp/*
 
 COPY entry.sh /entry.sh
 COPY bashrc /etc/bash.bashrc
@@ -68,4 +77,4 @@ RUN ${PIP} install --no-cache-dir \
     tensorflow-gpu
 
 ENTRYPOINT ["/entry.sh"]
-CMD bash -l
+CMD ["bash", "-l"]

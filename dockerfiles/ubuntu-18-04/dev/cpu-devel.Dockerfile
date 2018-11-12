@@ -20,7 +20,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         unzip \
         && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf \
+        /var/lib/apt/lists/* \
+        /tmp/* \
+        /var/tmp/*
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
@@ -31,7 +34,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zlib1g-dev \
         && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf \
+        /var/lib/apt/lists/* \
+        /tmp/* \
+        /var/tmp/*
 
 RUN apt-get update && apt-get install -y \
         openjdk-8-jdk \
@@ -46,7 +52,10 @@ RUN apt-get update && apt-get install -y \
         bazel \
         && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf \
+        /var/lib/apt/lists/* \
+        /tmp/* \
+        /var/tmp/*
 
 ENTRYPOINT ["/entry.sh"]
 CMD bash -l

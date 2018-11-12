@@ -19,7 +19,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zlib1g-dev \
         && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf \
+        /var/lib/apt/lists/* \
+        /tmp/* \
+        /var/tmp/*
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libnccl-dev=2.2.13-1+cuda9.0 \
@@ -30,7 +33,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libnvinfer-dev=4.1.2-1+cuda9.0 \
         && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf \
+        /var/lib/apt/lists/* \
+        /tmp/* \
+        /var/tmp/*
 
 # Link NCCL libray and header where the build script expects them.
 RUN mkdir /usr/local/cuda-9.0/lib &&  \
@@ -51,7 +57,10 @@ RUN apt-get update && \
         bazel \
         && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf \
+        /var/lib/apt/lists/* \
+        /tmp/* \
+        /var/tmp/*
 
 ENTRYPOINT ["/entry.sh"]
 CMD bash -l
