@@ -12,8 +12,6 @@ RUN mkdir /workdir && \
     chmod a+rwx /workdir && \
     mkdir /.local && \
     chmod a+rwx /.local
-    
-COPY entry.sh /entry.sh
 
 WORKDIR /workdir
 EXPOSE 8888

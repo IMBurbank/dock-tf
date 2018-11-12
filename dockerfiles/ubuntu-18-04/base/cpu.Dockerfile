@@ -30,8 +30,12 @@ RUN apt-get update && apt-get install -y \
         pip \
         setuptools
 
+COPY entry.sh /entry.sh
 COPY bashrc /etc/bash.bashrc
 RUN chmod a+rwx /etc/bash.bashrc
 
 RUN ${PIP} install --no-cache-dir \
     tensorflow
+
+ENTRYPOINT ["/entry.sh"]
+CMD bash -l
