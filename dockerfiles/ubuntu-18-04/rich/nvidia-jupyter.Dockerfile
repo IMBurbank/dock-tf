@@ -8,19 +8,19 @@ FROM dget/dock-tf:1804-gpu
 
 RUN pip install --no-cache-dir jupyter
 
-RUN mkdir /my-devel && \
-    chmod a+rwx /my-devel && \
+RUN mkdir /workdir && \
+    chmod a+rwx /workdir && \
     mkdir /.local && \
     chmod a+rwx /.local
     
 COPY entry.sh /entry.sh
 
-WORKDIR /my-devel
+WORKDIR /workdir
 EXPOSE 8888
 
 ENTRYPOINT ["/entry.sh"]
 CMD ["bash", "-c", "jupyter notebook \
-        --notebook-dir=/my-devel \
+        --notebook-dir=/workdir \
         --ip 0.0.0.0 \
         --no-browser \
         --allow-root"]
